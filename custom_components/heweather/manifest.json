@@ -1,0 +1,8 @@
+{
+  "domain": "heweather",
+  "name": "heweather",
+  "documentation": "https://github.com/aalavender/heweather",
+  "dependencies": [],
+  "codeowners": ["@aalavender"],
+  "requirements": []
+}
