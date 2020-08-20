@@ -27,6 +27,13 @@ ATTR_TEMPERATURE_FEELS  = "temperature_feels" # 体感温度
 ATTR_WIND_DIR = "wind_dir" #风向
 ATTR_WIND_SCALE = "wind_sacle" #风力
 
+#在7天的预报信息中添加如下信息
+ATTR_FORECAST_SUN_RISE = "sun_rise"  #日出时间
+ATTR_FORECAST_SUN_SET = "sun_set"    #日落时间
+ATTR_FORECAST_MOON_RISE = "moon_rise"    #月升时间
+ATTR_FORECAST_MOON_SET = "moon_set"      #月落时间    
+ATTR_FORECAST_MOON_PHASE = "moon_phase"  #月相
+
 ATTR_FORECAST_PRECIPITATION_PROBABILITY = "precipitation_probability"
 # mapping state, why? because
 # https://developers.home-assistant.io/docs/core/entity/weather#recommended-values-for-state-and-condition
@@ -269,7 +276,12 @@ class HeWeather(WeatherEntity):
                     ATTR_FORECAST_TEMP: float(self._daily_forecast_data[i]["tempMax"]),
                     ATTR_FORECAST_TEMP_LOW: float(self._daily_forecast_data[i]["tempMin"]),
                     ATTR_FORECAST_WIND_BEARING: float(self._daily_forecast_data[i]["wind360Day"]),
-                    ATTR_FORECAST_WIND_SPEED: float(self._daily_forecast_data[i]["windSpeedDay"])
+                    ATTR_FORECAST_WIND_SPEED: float(self._daily_forecast_data[i]["windSpeedDay"]),
+                    ATTR_FORECAST_SUN_RISE: self._daily_forecast_data[i]["sunrise"],
+                    ATTR_FORECAST_SUN_SET: self._daily_forecast_data[i]["sunset"],
+                    ATTR_FORECAST_MOON_RISE: self._daily_forecast_data[i]["moonrise"],
+                    ATTR_FORECAST_MOON_SET: self._daily_forecast_data[i]["moonset"],
+                    ATTR_FORECAST_MOON_PHASE: self._daily_forecast_data[i]["moonPhase"]
                 }
                 forecast_data.append(data_dict)
 
