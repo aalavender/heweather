@@ -328,23 +328,23 @@ class HeWeather(WeatherEntity):
         return forecast_data
 
     def update(self):
-        _LOGGER.info("HeWeather updating from  https://devapi.heweather.net/v7")
+        _LOGGER.info("HeWeather updating from  https://devapi.qweather.net/v7")
         #实况天气，字典
-        self._msg = requests.get("https://devapi.heweather.net/v7/weather/now?location={0}&key={1}".format(self._region,self._api_key)).content
+        self._msg = requests.get("https://devapi.qweather.net/v7/weather/now?location={0}&key={1}".format(self._region,self._api_key)).content
         self._now_weather_data  = json.loads(self._msg)["now"]
         self._data_source_update  = json.loads(self._msg)["updateTime"]
         #空气质量实况，字典
-        self._msg = requests.get("https://devapi.heweather.net/v7/air/now?location={0}&key={1}".format(self._region,self._api_key)).content
+        self._msg = requests.get("https://devapi.qweather.net/v7/air/now?location={0}&key={1}".format(self._region,self._api_key)).content
         self._now_air_data  = json.loads(self._msg)["now"]       
         #灾害预警，字典数组
-        self._msg = requests.get("https://devapi.heweather.net/v7/warning/now?location={0}&key={1}".format(self._region,self._api_key)).content
+        self._msg = requests.get("https://devapi.qweather.net/v7/warning/now?location={0}&key={1}".format(self._region,self._api_key)).content
         self._now_warning  = json.loads(self._msg)["warning"] 
         #生活指数，字典数组
-        self._msg = requests.get("https://devapi.heweather.net/v7/indices/1d?location={0}&key={1}&type=0".format(self._region,self._api_key)).content
+        self._msg = requests.get("https://devapi.qweather.net/v7/indices/1d?location={0}&key={1}&type=0".format(self._region,self._api_key)).content
         self._now_life_data  = json.loads(self._msg)["daily"] 
         #未来7天预报，包括当天，字典数组
-        self._msg = requests.get("https://devapi.heweather.net/v7/weather/7d?location={0}&key={1}".format(self._region,self._api_key)).content
+        self._msg = requests.get("https://devapi.qweather.net/v7/weather/7d?location={0}&key={1}".format(self._region,self._api_key)).content
         self._daily_forecast_data  = json.loads(self._msg)["daily"] 
         #未来24小时，下一个整点开始，逐小时预报，字典数据
-        self._msg = requests.get("https://devapi.heweather.net/v7/weather/24h?location={0}&key={1}".format(self._region,self._api_key)).content
+        self._msg = requests.get("https://devapi.qweather.net/v7/weather/24h?location={0}&key={1}".format(self._region,self._api_key)).content
         self._hourly_forecast_data  = json.loads(self._msg)["hourly"]         
